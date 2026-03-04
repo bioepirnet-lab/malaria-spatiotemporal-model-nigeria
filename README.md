@@ -12,11 +12,11 @@ The repository provides reproducible implementations of the **statistical and ma
  
 ---
 
-# Overview
+## Overview
 
 The study combines two complementary modeling approaches:
 
-## 1. Bayesian Spatio-Temporal Statistical Model (R – INLA)
+### 1. Bayesian Spatio-Temporal Statistical Model (R – INLA)
 
 Used to analyze malaria prevalence among children under five using **Nigeria Malaria Indicator Survey (NMIS)** data from:
 
@@ -24,7 +24,7 @@ Used to analyze malaria prevalence among children under five using **Nigeria Mal
 - 2015  
 - 2021  
 
-## 2. Mathematical Transmission Model (Python – ODE System)
+### 2. Mathematical Transmission Model (Python – ODE System)
 
 A compartmental model describing malaria transmission dynamics between humans and mosquitoes.  
 The model explores the impact of interventions such as:
@@ -36,7 +36,7 @@ The model explores the impact of interventions such as:
 
 ---
 
-# Repository Structure
+## Repository Structure
 ```text
 malaria-spatiotemporal-model-nigeria/
 ├── code/
@@ -49,10 +49,7 @@ malaria-spatiotemporal-model-nigeria/
 └── README.md
 ```
 
-
----
-
-# Statistical Model
+## Statistical Model
 
 The statistical analysis uses a **Bayesian hierarchical spatio-temporal model** where malaria infection status is modeled at the individual child level using a **Bernoulli logistic regression framework**.
 
@@ -68,7 +65,7 @@ Model estimation was performed using **Integrated Nested Laplace Approximation (
 
 ---
 
-# Mathematical Model
+## Mathematical Model
 
 The mathematical model is a **compartmental system of ordinary differential equations (ODEs)** describing malaria transmission between humans and mosquito vectors.
 
@@ -102,7 +99,7 @@ The model simulations are implemented using **Python and SciPy**.
 
 ---
 
-# Data Availability
+## Data Availability
 
 The analysis uses **Nigeria Malaria Indicator Survey (NMIS)** data.
 
