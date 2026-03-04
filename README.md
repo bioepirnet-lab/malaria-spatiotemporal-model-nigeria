@@ -38,6 +38,7 @@ The model explores the impact of interventions such as:
 
 # Repository Structure
 malaria-spatiotemporal-model-nigeria/
+/code
 
 ├── code
 │ ├── spatiotemporal_malaria_inla_model.R
@@ -51,3 +52,74 @@ malaria-spatiotemporal-model-nigeria/
 │ └── nmis_data_description.txt
 │
 └── README.md
+/code
+
+
+---
+
+# Statistical Model
+
+The statistical analysis uses a **Bayesian hierarchical spatio-temporal model** where malaria infection status is modeled at the individual child level using a **Bernoulli logistic regression framework**.
+
+### Model components
+
+- Fixed effects for socio-demographic and household variables
+- Spatial random effects using **Intrinsic Conditional Autoregressive (ICAR) priors**
+- Temporal random effects modeled as a **first-order random walk**
+- Spatio-temporal interaction terms
+- Penalized Complexity (PC) priors for random-effect precision parameters
+
+Model estimation was performed using **Integrated Nested Laplace Approximation (INLA)**.
+
+---
+
+# Mathematical Model
+
+The mathematical model is a **compartmental system of ordinary differential equations (ODEs)** describing malaria transmission between humans and mosquito vectors.
+
+### Human compartments
+
+- Susceptible
+- Vaccinated
+- Exposed
+- Asymptomatic
+- Infectious
+- Recovered
+
+### Vector compartments
+
+- Susceptible
+- Exposed
+- Infectious
+
+### Model features
+
+The model incorporates environmental and intervention factors such as:
+
+- Mosquito breeding sites
+- Irrigation effects
+- Bed net usage
+- Treatment access
+- Seasonal malaria chemoprevention
+- Vaccination
+
+The model simulations are implemented using **Python and SciPy**.
+
+---
+
+# Data Availability
+
+The analysis uses **Nigeria Malaria Indicator Survey (NMIS)** data.
+
+Due to data access restrictions, the NMIS datasets are **not included in this repository**.
+
+Researchers wishing to reproduce the analysis should obtain the data from the official sources and use the scripts provided here.
+
+---
+
+# Software Requirements
+
+## R
+
+Required packages include:
+
