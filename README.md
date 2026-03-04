@@ -159,6 +159,9 @@ Ukwajunor, E. E., Nwankwo-Eluwa, A., Egonmwan, A. O., & Anyasodor, A. E.
 # Contact
 
 **Eunice Ukwajunor, PhD**
+
 Founder & Lead Research Scientist
+
 Biostatistics and Epidemiological Research Network (BioEpiRNet)
-bioepirnet@gmail.com | +234 8023437236
+
+📧 Email: bioepirnet@gmail.com 
