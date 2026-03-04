@@ -139,13 +139,11 @@ The code is intended to promote **transparency, reproducibility, and further res
 ---
 
 # Citation
+If you use this code, please cite the associated manuscript:
 
-If you use this code, please cite:
-
-Ukwajunor, E. E., Nwankwo-Eluwa, A., Egonmwan, A. O., & Anyasodor, A. E.
-**Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria.**
-*Communications in Statistics – Case Studies and Data Analysis.*
-
+Ukwajunor, E. E., Nwankwo-Eluwa, A., Egonmwan, A. O., & Anyasodor, A. E.  
+**Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria.**  
+Manuscript currently under review at *Communications in Statistics – Case Studies and Data Analysis*.
 ---
 
 # Contact
