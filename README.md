@@ -122,4 +122,39 @@ Researchers wishing to reproduce the analysis should obtain the data from the of
 ## R
 
 Required packages include:
+- INLA
+- spdep
+- sf
+- dplyr
+- ggplot2
+
+
+---
+
+# Reproducibility
+
+All scripts required to reproduce the statistical analysis and model simulations are provided in this repository.
+
+The code is intended to promote **transparency, reproducibility, and further research on malaria transmission dynamics**.
+
+---
+
+# Citation
+
+If you use this code, please cite:
+
+Egonmwan, A. O., Ukwajunor, E. E., Nwankwo-Eluwa, A., & Anyasodor, A. E.
+
+**Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria.**
+
+*Communications in Statistics – Case Studies and Data Analysis.*
+
+---
+
+# Contact
+
+**Dr. Amos O. Egonmwan**  
+Biostatistics and Epidemiological Research Network (BioEpiRNet)
+
+📧 Email: amos.egonmwan@hotmail.com
 
