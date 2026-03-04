@@ -1,15 +1,20 @@
-## Description: malaria-spatiotemporal-model-nigeria
-Code for the study “Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria”, including R (INLA Bayesian spatio-temporal model) and Python (ODE transmission model) implementations.
-
-
 # Malaria Spatio-Temporal Model – Nigeria
 
-This repository contains the **code used in the study**:
+**Repository:** malaria-spatiotemporal-model-nigeria
+
+This repository contains the code for the study:
 
 **"Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria."**
 
-The repository provides reproducible implementations of the **statistical and mathematical models** used to analyze malaria prevalence patterns and intervention impacts in Nigeria.
- 
+The manuscript has been **submitted and is currently under review at *Communications in Statistics – Case Studies and Data Analysis*.**
+
+The repository provides reproducible implementations of the statistical and mathematical models used in the study, including:
+
+- **R code** implementing the Bayesian spatio-temporal statistical model using **INLA**
+- **Python code** implementing the **ODE-based malaria transmission model**
+
+These models are used to analyze malaria prevalence patterns and evaluate the potential impact of interventions across Nigeria.
+
 ---
 
 ## Overview
