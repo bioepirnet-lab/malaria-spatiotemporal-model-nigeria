@@ -1,5 +1,4 @@
-# Malaria Spatio-Temporal Model – Nigeria
-
+# Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria 
 This repository contains the **R and Python code** for the study:
 
 **"Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria."**
