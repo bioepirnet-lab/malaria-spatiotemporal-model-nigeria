@@ -9,7 +9,7 @@ This repository contains the **code used in the study**:
 **"Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria."**
 
 The repository provides reproducible implementations of the **statistical and mathematical models** used to analyze malaria prevalence patterns and intervention impacts in Nigeria.
-
+ 
 ---
 
 # Overview
