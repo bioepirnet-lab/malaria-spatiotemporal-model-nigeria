@@ -38,21 +38,19 @@ The model explores the impact of interventions such as:
 
 # Repository Structure
 malaria-spatiotemporal-model-nigeria/
-/code
-
-├── code
-│ ├── spatiotemporal_malaria_inla_model.R
-│ └── malaria_transmission_ode_model.py
 │
-├── figures
+├── code/
+│   ├── spatiotemporal_malaria_inla_model.R
+│   └── malaria_transmission_ode_model.py
 │
-├── outputs
+├── figures/
 │
-├── data_info
-│ └── nmis_data_description.txt
+├── outputs/
+│
+├── data_info/
+│   └── nmis_data_description.txt
 │
 └── README.md
-/code
 
 
 ---
