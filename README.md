@@ -158,8 +158,7 @@ Ukwajunor, E. E., Nwankwo-Eluwa, A., Egonmwan, A. O., & Anyasodor, A. E.
 
 # Contact
 
-**Dr. Amos O. Egonmwan**  
+**Eunice Ukwajunor, PhD**
+Founder & Lead Research Scientist
 Biostatistics and Epidemiological Research Network (BioEpiRNet)
-
-📧 Email: amos.egonmwan@hotmail.com
-
+bioepirnet@gmail.com | +234 8023437236
