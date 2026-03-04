@@ -105,10 +105,6 @@ The model simulations are implemented using **Python and SciPy**.
 
 The analysis uses **Nigeria Malaria Indicator Survey (NMIS)** data.
 
-Due to data access restrictions, the NMIS datasets are **not included in this repository**.
-
-Researchers wishing to reproduce the analysis should obtain the NMIS datasets from the **Demographic and Health Surveys (DHS) Program** or the **Nigeria National Malaria Elimination Programme (NMEP)** and then run the scripts provided in this repository.
-
 ---
 
 ## Software Requirements
