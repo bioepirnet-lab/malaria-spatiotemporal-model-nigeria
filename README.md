@@ -129,6 +129,13 @@ Required packages include:
 - ggplot2
 
 
+## Python
+
+Required libraries include:
+- numpy
+- scipy
+- matplotlib
+- pandas
 ---
 
 # Reproducibility
