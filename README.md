@@ -1,7 +1,4 @@
 # Malaria Spatio-Temporal Model – Nigeria
-
-**Repository:** malaria-spatiotemporal-model-nigeria
-
 This repository contains the code for the study:
 
 **"Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria."**
