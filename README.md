@@ -150,10 +150,8 @@ The code is intended to promote **transparency, reproducibility, and further res
 
 If you use this code, please cite:
 
-Egonmwan, A. O., Ukwajunor, E. E., Nwankwo-Eluwa, A., & Anyasodor, A. E.
-
+Ukwajunor, E. E., Nwankwo-Eluwa, A., Egonmwan, A. O., & Anyasodor, A. E.
 **Spatio-Temporal and Mathematical Modeling of Malaria Burden and Intervention Efficacy in Nigeria.**
-
 *Communications in Statistics – Case Studies and Data Analysis.*
 
 ---
