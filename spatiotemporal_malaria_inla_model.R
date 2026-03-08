@@ -17,8 +17,9 @@ view(gamdata)
 gamdata=na.omit(gamdata)
 nrow(gamdata)
 
-################## Data preparation ############
-
+##################################################################
+###################### Data preparation ######################
+#################################################################
 gamdata$HV025=factor(gamdata$HV025,levels = c(1,2),labels= c("Urban","Rural"))
 gamdata$bednetUse=factor(gamdata$bednetUse,levels = c(0,1),
                          labels =c("No","Yes") )
@@ -53,89 +54,6 @@ cNames = c("CASEID","residence","clusterAltitude","bednetUse","wealthIndex",
 colnames(gamdata)=cNames
 
 view(gamdata)
-
-
-######### Read in the shape file
-
-map <- st_read("C:/Users/DELL/Documents/SPATIAL MODELLING/NIGERIA MAP/gadm41_NGA_shp", layer = "gadm41_NGA_1")
-
-### Create Adjacent matrix and the time index
-
-nb<-poly2nb(map)
-nb2INLA("NGR.graph", nb)
-NGR.adj <- inla.read.graph(filename="NGR.graph")
-
-
-dw <- reshape(gamdata,
-              timevar = 'yearstudy',
-              idvar = 'REGNAME',
-              direction = "wide"
-)
-
-
-map <- merge(map, dw, by.x = "NAME_1", by.y = "REGNAME") 
-map_sf <- st_as_sf(map)
-
-if (is.factor(gamdata$yearstudy)) {
-  gamdata$yearstudy <- as.numeric(as.character(gamdata$yearstudy))
-}
-
-gamdata$idtime <- 1 + gamdata$yearstudy - min(gamdata$yearstudy)
-gamdata$state <- as.numeric(as.factor(gamdata$state))
-gamdata$state_spatial <- gamdata$state 
-gamdata$state_iid <- as.numeric(gamdata$state)
-
-
-#### Write the INLA formula and the INLA call
-
-formula <- microscopy ~residence + bednetUse + wealthIndex + sex + anemiaLevel+motherEdlevel+yearstudy+
-  f(idtime, model = "rw1") +
-  f(age, model = "rw1") + 
-  f(state_spatial, model = "besag", graph = NGR.adj) + 
-  f(state_iid, idtime, model = "iid")
-
-mod <- inla(formula, data = gamdata, family = "binomial", 
-            control.compute = list(dic = TRUE, waic = TRUE), verbose = TRUE)
-summary(mod)
-
-gamdata$R <- mod$summary.fitted.values[, "mean"]
-
-View(gamdata)
-
-### ### Aggregate fitted probabilities by state #########
-
-state_year_pred <- gamdata %>%
-  dplyr::group_by(REGNAME, yearstudy) %>%
-  dplyr::summarise(
-    R = mean(R, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-names(state_year_pred)
-
-map_sf_states <- map_sf %>%
-  dplyr::select(NAME_1, geometry) %>%
-  distinct()
-
-map_sf_plot <- map_sf_states %>%
-  left_join(state_year_pred, by = c("NAME_1" = "REGNAME"))
-
-###### Plot 
-
-ggplot(map_sf_plot) +
-  geom_sf(aes(fill = R)) +
-  facet_wrap(~yearstudy) +
-  scale_fill_distiller(
-    palette = "RdYlBu",
-    direction = -1,
-    name = "Prevalence"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "right",
-    strip.text = element_text(face = "bold")
-  )
-
 
 ###################################################################
 ############  Bivariate Analysis######################### 
@@ -305,6 +223,166 @@ write.xlsx(
   sheetName = "State Distribution",
   rowNames = FALSE
 )
+
+
+
+#############################################################
+########### Spatio-temporal Modeling #####################
+#############################################################
+
+############## Read in the shape file ###################
+
+map <- st_read("C:/Users/DELL/Documents/SPATIAL MODELLING/NIGERIA MAP/gadm41_NGA_shp", layer = "gadm41_NGA_1")
+
+### Create Adjacent matrix and the time index
+
+nb<-poly2nb(map)
+nb2INLA("NGR.graph", nb)
+NGR.adj <- inla.read.graph(filename="NGR.graph")
+
+
+dw <- reshape(gamdata,
+              timevar = 'yearstudy',
+              idvar = 'REGNAME',
+              direction = "wide"
+)
+
+
+map <- merge(map, dw, by.x = "NAME_1", by.y = "REGNAME") 
+map_sf <- st_as_sf(map)
+
+if (is.factor(gamdata$yearstudy)) {
+  gamdata$yearstudy <- as.numeric(as.character(gamdata$yearstudy))
+}
+
+gamdata$idtime <- 1 + gamdata$yearstudy - min(gamdata$yearstudy)
+gamdata$state <- as.numeric(as.factor(gamdata$state))
+gamdata$state_spatial <- gamdata$state 
+gamdata$state_iid <- as.numeric(gamdata$state)
+
+
+#### Write the INLA formula and the INLA call
+
+formula <- microscopy ~residence + bednetUse + wealthIndex + sex + anemiaLevel+motherEdlevel+yearstudy+
+  f(idtime, model = "rw1") +
+  f(age, model = "rw1") + 
+  f(state_spatial, model = "besag", graph = NGR.adj) + 
+  f(state_iid, idtime, model = "iid")
+
+mod <- inla(formula, data = gamdata, family = "binomial", 
+            control.compute = list(dic = TRUE, waic = TRUE), verbose = TRUE)
+summary(mod)
+
+gamdata$R <- mod$summary.fitted.values[, "mean"]
+
+View(gamdata)
+
+### ### Aggregate fitted probabilities by state #########
+
+state_year_pred <- gamdata %>%
+  dplyr::group_by(REGNAME, yearstudy) %>%
+  dplyr::summarise(
+    R = mean(R, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+names(state_year_pred)
+
+map_sf_states <- map_sf %>%
+  dplyr::select(NAME_1, geometry) %>%
+  distinct()
+
+map_sf_plot <- map_sf_states %>%
+  left_join(state_year_pred, by = c("NAME_1" = "REGNAME"))
+
+###### Plot 
+
+ggplot(map_sf_plot) +
+  geom_sf(aes(fill = R)) +
+  facet_wrap(~yearstudy) +
+  scale_fill_distiller(
+    palette = "RdYlBu",
+    direction = -1,
+    name = "Prevalence"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "right",
+    strip.text = element_text(face = "bold")
+  )
+
+##################################################################
+### Posterior predictive check: observed vs predicted prevalence
+#################################################################
+
+observed_state <- gamdata %>%
+  group_by(REGNAME, yearstudy) %>%
+  summarise(
+    observed = mean(microscopy),
+    .groups = "drop"
+  )
+
+predicted_state <- gamdata %>%
+  group_by(REGNAME, yearstudy) %>%
+  summarise(
+    predicted = mean(R),
+    .groups = "drop"
+  )
+
+ppc <- left_join(observed_state, predicted_state,
+                 by=c("REGNAME","yearstudy"))
+
+### Plot calibration
+
+ggplot(ppc, aes(x=observed, y=predicted)) +
+  geom_point(size=3) +
+  geom_abline(slope=1, intercept=0, linetype="dashed") +
+  labs(x="Observed prevalence",
+       y="Predicted prevalence",
+       title="Posterior predictive assessment") +
+  theme_minimal()
+
+
+ggplot(ppc, aes(x = observed, y = predicted)) +
+  geom_point(size = 3, color = "steelblue", alpha = 0.8) +
+  geom_abline(
+    slope = 1,
+    intercept = 0,
+    linetype = "dashed",
+    color = "firebrick",
+    linewidth = 1
+  ) +
+  labs(
+    x = "Observed prevalence",
+    y = "Predicted prevalence"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor = element_blank()
+  )
+
+
+ggplot(ppc, aes(x = observed, y = predicted)) +
+  geom_point(size = 3.5, color = "#2C7FB8", alpha = 0.85) +
+  geom_abline(
+    slope = 1,
+    intercept = 0,
+    linetype = "dashed",
+    color = "#D7301F",
+    linewidth = 1.2
+  ) +
+  labs(
+    x = "Observed prevalence",
+    y = "Predicted prevalence"
+  ) +
+  coord_equal() +
+  theme_minimal(base_size = 15) +
+  theme(
+    panel.grid.minor = element_blank(),
+    axis.title = element_text(face = "bold")
+  )
+
+
 
 ###############################################################
 
